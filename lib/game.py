@@ -1,11 +1,14 @@
 import os
 import time
+import serial
+from serial_start import serialFeed1
 
 if os.name =='nt':
 	import win32api
 	import win32con
 else:
 	from subprocess import Popen
+
 
 
 class Game:
@@ -46,6 +49,7 @@ class Game:
                 time.sleep(.15)
                 win32api.keybd_event(self.button_to_key(button), 0, win32con.KEYEVENTF_KEYUP, 0)
             else:
-                Popen(["xdotool", "keydown"] + self.button_to_key(button))
-                time.sleep(.15)
-                Popen(["xdotool", "keyup"] + self.button_to_key(button))
+                #Popen(["xdotool", "keydown"] + self.button_to_key(button))
+                #time.sleep(.15)
+                #Popen(["xdotool", "keyup"] + self.button_to_key(button))
+                serialFeed1.write('1')

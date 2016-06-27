@@ -20,3 +20,4 @@ def pbutton(message_buffer):
     #system('clear')
     print '\n\n'
     print '\n'.join([' {0:<12s} {1:>6s}'.format(message['username'][:12].title(), message['button'].lower()) for message in message_buffer])
+    
