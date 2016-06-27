@@ -1,4 +1,4 @@
 import time
 import serial
 
-serialFeed1 = serial.Serial('/dev/ttyACM1', 9600)
+serialFeed1 = serial.Serial('/dev/ttyACM0', 9600)
