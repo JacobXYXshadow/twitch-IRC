@@ -1,4 +1,5 @@
 import time
+import csv
 
 from config.config import config
 from lib.irc import Irc
@@ -11,6 +12,7 @@ class Bot:
         self.config = config
         self.irc = Irc(config)
         self.game = Game()
+        self.botOn = True
         self.message_buffer = [{'username': '', 'button': ''}] * self.config['misc']['chat_height']
 
     def set_message_buffer(self, message):
@@ -30,15 +32,54 @@ class Bot:
                 button = message['message'].lower()
                 username = message['username'].lower()
 
-                if not self.game.is_valid_button(button):
-                    continue
+                #Turns off the bot with one of your commands
+                if username == 'squid767':
+                    if button == 'TAKE IT OFF!':
+                        self.botOn = False
 
-                if button in self.config['throttled_buttons']:
-                    if time.time() - throttle_timers[button] < self.config['throttled_buttons'][button]:
+                #Turns on the bot with one of your commands
+                if username == 'squid767':
+                    if button == 'GET IT ON!':
+                        self.botOn = True
+
+                #Helper for writing actionable data to csv
+                if button in self.game.keymap.keys():
+                    actionable = 1
+                else:
+                    actionable = 0
+
+                #Helper for writing is Bot Active data to csv
+                if self.botOn == True:
+                    chatActionsOn = 1
+                else:
+                    chatActionsOn = 0
+
+                #Creates an array of data to write to csv
+                chat_data_array = [username, time.time(), button, actionable , chatActionsOn]
+                
+                #Writes a message to the csv that tracks chat data
+                with open('chat_data.csv', 'a+') as chatData:
+                    writer = csv.writer(chatData)
+                    writer.writerow(chat_data_array)
+
+                #If the Bot is on, then it outputs the appropriate action.
+                #If the Bot is off, continues to gen the input feed but does not execute an action
+                if self.botOn == True:
+                    if not self.game.is_valid_button(button):
                         continue
 
-                    throttle_timers[button] = time.time()
-         
-                self.set_message_buffer({'username': username, 'button': button})
-                pbutton(self.message_buffer) #This is a console output function. It outputs the log of imputs from chat
-                self.game.push_button(button)
+                    if button in self.config['throttled_buttons']:
+                        if time.time() - throttle_timers[button] < self.config['throttled_buttons'][button]:
+                            continue
+
+                        throttle_timers[button] = time.time()
+                    
+
+                    self.set_message_buffer({'username': username, 'button': button})
+                    pbutton(self.message_buffer) #This is a console output function. It outputs the log of inputs from chat
+                    self.game.push_button(button)
+                else:
+                    print "Bot Enabled Chat is OFF"
+                    self.set_message_buffer({'username': username, 'button': button})
+                    pbutton(self.message_buffer)
+                    
