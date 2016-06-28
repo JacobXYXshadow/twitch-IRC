@@ -33,13 +33,13 @@ class Bot:
                 username = message['username'].lower()
 
                 #Turns off the bot with one of your commands
-                if username == 'squid767':
-                    if button == 'TAKE IT OFF!':
+                if username == 'YOUR USERNAME GOES HERE':
+                    if button == 'take it off':
                         self.botOn = False
 
                 #Turns on the bot with one of your commands
-                if username == 'squid767':
-                    if button == 'GET IT ON!':
+                if username == 'YOUR USERNAME GOES HERE':
+                    if button == 'get it on':
                         self.botOn = True
 
                 #Helper for writing actionable data to csv
@@ -79,7 +79,6 @@ class Bot:
                     pbutton(self.message_buffer) #This is a console output function. It outputs the log of inputs from chat
                     self.game.push_button(button)
                 else:
-                    print "Bot Enabled Chat is OFF"
                     self.set_message_buffer({'username': username, 'button': button})
                     pbutton(self.message_buffer)
                     

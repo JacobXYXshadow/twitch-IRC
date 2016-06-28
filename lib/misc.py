@@ -1,5 +1,6 @@
 import time
 from os import system
+import bot as cleanBot
 
 def pp(message, mtype='INFO'):
     mtype = mtype.upper()
@@ -18,5 +19,10 @@ def pbot(message, channel=''):
 
 def pbutton(message_buffer):
     #system('clear')
-    print '\n\n'
-    print '\n'.join([' {0:<12s} {1:>6s}'.format(message['username'][:12].title(), message['button'].lower()) for message in message_buffer])
+    if cleanBot.Bot().botOn == True:
+        print '\n\n'
+        print '\n'.join([' {0:<12s} {1:>6s}'.format(message['username'][:12].title(), message['button'].lower()) for message in message_buffer])
+    else:
+        print '\n\n'
+        print '\n'.join('CHAT ENABLED ACTIONS ARE OFF')
+        print '\n'.join([' {0:<12s} {1:>6s}'.format(message['username'][:12].title(), message['button'].lower()) for message in message_buffer])
