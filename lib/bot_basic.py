@@ -33,12 +33,12 @@ class Bot:
                 username = message['username'].lower()
 
                 #Turns off the bot with one of your commands
-                if username == 'squid767':
+                if username == 'YOUR USERNAME GOES HERE':
                     if button == 'take it off':
                         self.botOn = False
 
                 #Turns on the bot with one of your commands
-                if username == 'squid767':
+                if username == 'YOUR USERNAME GOES HERE':
                     if button == 'get it on':
                         self.botOn = True
 
@@ -57,7 +57,7 @@ class Bot:
                 #Creates an array of data to write to csv
                 chat_data_array = [username, time.time(), button, actionable , chatActionsOn]
                 
-                #Writes a message to the csv - each message is a new row of data
+                #Writes a message to the csv that tracks chat data
                 with open('chat_data.csv', 'a+') as chatData:
                     writer = csv.writer(chatData)
                     writer.writerow(chat_data_array)
@@ -79,9 +79,6 @@ class Bot:
                     pbutton(self.message_buffer) #This is a console output function. It outputs the log of inputs from chat
                     self.game.push_button(button)
                 else:
-                    if not self.game.is_valid_button(button):
-                        continue
-
                     self.set_message_buffer({'username': username, 'button': button})
                     pbutton(self.message_buffer)
                     
