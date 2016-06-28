@@ -10,7 +10,6 @@ else:
 	from subprocess import Popen
 
 
-
 class Game:
     if os.name == 'nt':
         keymap = {
@@ -25,13 +24,13 @@ class Game:
         }
     else:
         keymap = {
-           'up': ["Up"],
-           'down': ["Down"],
-           'left': ["Left"],
-           'right': ["Right"],
-           'a': ["a"],
-           'b': ["b"],
-           'start': ["Return"]
+           'wave': ["1"],
+           'smile': ["2"],
+           'frown': ["3"],
+           'eyeRoll': ["4"],
+           'twitch': ["5"],
+           'fly': ["6"],
+           'cat': ["7"]
         }
 
     def get_valid_buttons(self):
@@ -52,4 +51,4 @@ class Game:
                 #Popen(["xdotool", "keydown"] + self.button_to_key(button))
                 #time.sleep(.15)
                 #Popen(["xdotool", "keyup"] + self.button_to_key(button))
-                serialFeed1.write('1')
+                serialFeed1.write(str(self.button_to_key(button)))
