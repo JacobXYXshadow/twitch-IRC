@@ -1,21 +1,22 @@
 
-Installation
-============
+About twitch-IRC
+===
 
-This version is linux ready. If you do not have xdotool installed on linux, use `apt-get install xdotool`. If the above does not work prefix that same command with `sudo`.
+This project's codebase is from https://github.com/aidanrt/twitch-plays
+The project has been heavily modified, though the config.py and irc.py files are untouched and work as they do in the project mentioned above.
 
-If on windows you are going to need [pywin32](http://sourceforge.net/projects/pywin32/). If you run into errors try running this with Python [2.7.x](http://www.python.org/download/releases/2.7/).
+This project's functionality includes:  
+	
+	The ability to turn the bot's functionality on and off with a user-specific command
+	Chat Data Recording into a CSV for later analysis
+	IRC communication with Arduinos through Serial Ports
 
-Rename `config/config_basic.py` to `config/config.py`, and replace the username/password there with your Twitch username and [OAuth token](http://www.twitchapps.com/tmi/). Feel free to modify the start throttle here aswell.
 
+Steps to Run the Program:
 ___
 
+Rename `config/config_basic.py` to `config/config.py`. Replace the username/password there with your Twitch username and [OAuth token](http://www.twitchapps.com/tmi/). Modifying the start throttle is done here.
 
-After you've set that up, open up your terminal and type `python serve.py`. If your username/password is wrong you will be notified.
+Rename `lib/bot_basic.py` tp `lib/bot.py`. Replace the `YOUR USERNAME GOES HERE` field with your username. Replace the `INPUT SHUTOFF` and `INPUT TURNON` with your desired messages.
 
-Whilst the script is running make sure you have your emulator in focus as your primary window. If you click onto another window, the script won't work. If you're not able to stay focused on one window as you need to do other things with your computer, you could try running all of this from within a virtual machine.
-
---
-
-You'll need to have VBA in focus for this to work, so your best bet would be to run all of this
-from within a VM.
+Begin the program by navigating to the root directory in the command promt. Run it with `python serve.py`. If your username/password is wrong you will be notified.

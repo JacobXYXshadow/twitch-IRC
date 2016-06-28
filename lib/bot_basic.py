@@ -34,12 +34,12 @@ class Bot:
 
                 #Turns off the bot with one of your commands
                 if username == 'YOUR USERNAME GOES HERE':
-                    if button == 'take it off':
+                    if button == 'YOUR INPUT SHUTOFF MESSAGE HERE':
                         self.botOn = False
 
                 #Turns on the bot with one of your commands
                 if username == 'YOUR USERNAME GOES HERE':
-                    if button == 'get it on':
+                    if button == 'YOUR INPUT TURNON MESSAGE HERE':
                         self.botOn = True
 
                 #Helper for writing actionable data to csv
