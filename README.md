@@ -2,7 +2,7 @@
 About twitch-IRC
 ===
 
-This project's codebase is from https://github.com/aidanrt/twitch-plays
+This project's inspirational codebase can be found at https://github.com/aidanrt/twitch-plays
 The project has been heavily modified, though the config.py and irc.py files are untouched and work as they do in the original project.
 
 This project's functionality includes:  
